@@ -12,6 +12,7 @@
   z-index: 9999;
   padding: 0.5rem 0;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .header-content {
@@ -42,24 +43,21 @@
   gap: 3rem;
   position: fixed;
   top: 0;
-  right: 0;
+  right: -100%;
   width: 320px;
   height: 100vh;
-  min-height: 100vh;
-  background: #0f0f0f;
+  background: rgba(15, 15, 15, 0.98);
+  backdrop-filter: blur(20px);
   flex-direction: column;
-  padding: 7rem 2rem 2rem;
+  padding: 6rem 2rem 2rem;
   gap: 2rem;
-  transition: transform 0.3s ease;
+  transition: right 0.3s ease;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 99999;
-  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
-  transform: translateX(100%);
-  overflow-y: auto;
+  z-index: 10000;
 }
 
 .nav-open {
-  transform: translateX(0);
+  right: 0;
 }
 
 .nav-link {
@@ -103,17 +101,7 @@
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  z-index: 100000;
-}
-
-.nav-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: calc(100vw - 320px);
-  height: 100vh;
-  background: rgba(0, 0, 0, );
-  z-index: 99997;
+  z-index: 1001;
 }
 
 .hamburger span {
