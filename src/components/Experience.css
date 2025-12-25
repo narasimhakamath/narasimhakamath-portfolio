@@ -136,6 +136,27 @@
   white-space: nowrap;
 }
 
+.experience-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.experience-location {
+  color: #888;
+  font-weight: 400;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.experience-location svg {
+  flex-shrink: 0;
+}
+
 .company-link {
   display: flex;
   align-items: center;

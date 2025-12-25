@@ -8,11 +8,7 @@ const Stats = () => {
       label: 'Years Experience'
     },
     {
-      number: '4',
-      label: 'Team Members'
-    },
-    {
-      number: '2',
+      number: '3',
       label: 'Major Products Built'
     },
     {

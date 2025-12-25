@@ -8,9 +8,10 @@ const Experience = () => {
       title: 'Technical Architect',
       company: 'DataNimbus Inc',
       companyUrl: 'https://www.linkedin.com/company/datanimbusinc',
-      logo: '/logos/datanimbus.png',
+      logo: '/logos/DataNimbus.jpeg',
       logoInitial: 'D',
       period: 'July 2025 - Present',
+      location: 'Bengaluru, India',
       description: 'Leading the architecture and development of Virtual Account Management (VAM) and Ledgers application, a Banking-As-A-Service solution for banks and fintechs.',
       achievements: [
         'Built the entire VAM/Ledgers application from ground up',
@@ -23,9 +24,10 @@ const Experience = () => {
       title: 'Technical Lead',
       company: 'DataNimbus Inc',
       companyUrl: 'https://www.linkedin.com/company/datanimbusinc',
-      logo: '/logos/datanimbus.png',
+      logo: '/logos/DataNimbus.jpeg',
       logoInitial: 'D',
       period: 'April 2024 - July 2025',
+      location: 'Bengaluru, India',
       description: 'Led technical development initiatives and established the foundation for the Banking-As-A-Service platform.',
       achievements: [
         'Designed and implemented core banking ledger system architecture',
@@ -38,9 +40,10 @@ const Experience = () => {
       title: 'Senior Software Engineer',
       company: 'Mobisy Technologies Pvt. Ltd. (Bizom)',
       companyUrl: 'https://www.linkedin.com/company/mobisy-technologies-pvt-ltd',
-      logo: '/logos/bizom.png',
+      logo: '/logos/Bizom.jpeg',
       logoInitial: 'B',
       period: 'January 2022 - April 2024',
+      location: 'Bengaluru, India',
       description: 'Developed and maintained scalable backend systems for retail distribution management platform.',
       achievements: [
         'Built high-performance APIs serving millions of requests',
@@ -53,9 +56,10 @@ const Experience = () => {
       title: 'Software Engineer',
       company: 'Mobisy Technologies Pvt. Ltd. (Bizom)',
       companyUrl: 'https://www.linkedin.com/company/mobisy-technologies-pvt-ltd',
-      logo: '/logos/bizom.png',
+      logo: '/logos/Bizom.jpeg',
       logoInitial: 'B',
       period: 'August 2018 - January 2022',
+      location: 'Bengaluru, India',
       description: 'Contributed to full-stack development of enterprise retail solutions.',
       achievements: [
         'Developed features for distribution and sales automation platform',
@@ -68,9 +72,10 @@ const Experience = () => {
       title: 'Software Engineer Intern',
       company: 'MountBlue Technologies',
       companyUrl: 'https://www.linkedin.com/company/mountblue-technologies',
-      logo: '/logos/mountblue.png',
+      logo: '/logos/MountBlue.jpeg',
       logoInitial: 'M',
       period: 'June 2018 - August 2018',
+      location: 'Bengaluru, India',
       description: 'Completed intensive software development internship program focused on full-stack web development.',
       achievements: [
         'Learned and applied modern web development technologies',
@@ -110,7 +115,15 @@ const Experience = () => {
                   <div className="title-wrapper">
                     <h3 className="experience-title">{exp.title}</h3>
                   </div>
-                  <span className="experience-period">{exp.period}</span>
+                  <div className="experience-meta">
+                    <span className="experience-period">{exp.period}</span>
+                    <span className="experience-location">
+                      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                      </svg>
+                      {exp.location}
+                    </span>
+                  </div>
                 </div>
                 <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className="company-link">
                   <div className="company-logo-wrapper">
