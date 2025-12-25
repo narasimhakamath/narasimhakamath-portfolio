@@ -8,11 +8,43 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In production, implement actual form submission
-    alert('Thank you for your message! I will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('https://formsubmit.co/narasimhakamath@outlook.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData?.name,
+          email: formData?.email,
+          message: formData?.message,
+          _subject: `Contact Request: ${formData?.name}`,
+          _captcha: 'false',
+          _template: 'table'
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -94,6 +126,17 @@ const Contact = () => {
           </div>
           
           <form className="contact-form" onSubmit={handleSubmit}>
+            {submitStatus === 'success' && (
+              <div className="form-message success">
+                Thank you for your message! I'll get back to you soon.
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="form-message error">
+                Sorry, there was an error sending your message. Please try again or contact me directly.
+              </div>
+            )}
+            
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input
@@ -104,6 +147,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 placeholder="Your name"
+                disabled={isSubmitting}
               />
             </div>
             
@@ -117,6 +161,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 placeholder="your.email@example.com"
+                disabled={isSubmitting}
               />
             </div>
             
@@ -130,10 +175,13 @@ const Contact = () => {
                 required
                 rows="5"
                 placeholder="Your message..."
+                disabled={isSubmitting}
               />
             </div>
             
-            <button type="submit" className="submit-btn">Send Message</button>
+            <button type="submit" className="submit-btn" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </button>
           </form>
         </div>
       </div>
