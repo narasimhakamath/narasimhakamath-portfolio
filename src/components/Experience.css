@@ -263,7 +263,7 @@
   }
   
   .section-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
   .section-header {
@@ -276,14 +276,90 @@
   }
   
   .timeline {
-    padding-left: 1.5rem;
+    padding-left: 0;
   }
   
   .timeline-content {
     padding: 1.5rem;
   }
   
+  .company-link {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+  }
+  
+  .company-logo-wrapper {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+  
+  .company-link:hover {
+    transform: none;
+  }
+  
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+  
+  .title-wrapper {
+    width: 100%;
+    text-align: left;
+  }
+  
   .experience-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.3;
+    margin-bottom: 0.25rem;
+  }
+  
+  .experience-company {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  
+  .experience-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    width: 100%;
+  }
+  
+  .experience-period {
+    white-space: normal;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+  
+  .experience-period::after {
+    content: none;
+  }
+  
+  .experience-location {
+    white-space: normal;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+  
+  .experience-description {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-top: 0.75rem;
+  }
+  
+  .achievement-list li {
+    font-size: 0.85rem;
   }
 }

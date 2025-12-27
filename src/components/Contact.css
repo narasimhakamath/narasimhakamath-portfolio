@@ -281,10 +281,57 @@
   }
   
   .section-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9rem;
   }
   
   .contact-form {
     padding: 1.5rem;
+  }
+  
+  .social-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .social-title {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .social-links {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .contact-info {
+    align-items: flex-start;
+  }
+  
+  .info-item {
+    justify-content: flex-start;
+  }
+  
+  .info-item h3 {
+    font-size: 0.7rem;
+  }
+  
+  .info-item p {
+    font-size: 0.85rem;
+  }
+  
+  .form-group label {
+    font-size: 0.85rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.85rem;
+    padding: 0.875rem;
   }
 }

@@ -111,20 +111,6 @@ const Experience = () => {
             <div key={exp.id} className="timeline-item">
               <div className="timeline-marker"></div>
               <div className="timeline-content">
-                <div className="experience-header">
-                  <div className="title-wrapper">
-                    <h3 className="experience-title">{exp.title}</h3>
-                  </div>
-                  <div className="experience-meta">
-                    <span className="experience-period">{exp.period}</span>
-                    <span className="experience-location">
-                      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                      </svg>
-                      {exp.location}
-                    </span>
-                  </div>
-                </div>
                 <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className="company-link">
                   <div className="company-logo-wrapper">
                     <img 
@@ -138,7 +124,21 @@ const Experience = () => {
                     />
                     <span className="company-logo-initial" style={{display: 'none'}}>{exp.logoInitial}</span>
                   </div>
-                  <h4 className="experience-company">{exp.company}</h4>
+                  <div className="experience-header">
+                    <div className="title-wrapper">
+                      <h3 className="experience-title">{exp.title}</h3>
+                      <h4 className="experience-company">{exp.company}</h4>
+                    </div>
+                    <div className="experience-meta">
+                      <span className="experience-period">{exp.period}</span>
+                      <span className="experience-location">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        {exp.location}
+                      </span>
+                    </div>
+                  </div>
                 </a>
                 <p className="experience-description">{exp.description}</p>
                 <ul className="achievement-list">

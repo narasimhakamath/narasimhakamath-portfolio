@@ -44,15 +44,15 @@
   }
   
   .stats-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
   
   .stat-number {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .stat-label {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
   }
 }
