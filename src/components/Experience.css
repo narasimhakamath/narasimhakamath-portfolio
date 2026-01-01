@@ -1,5 +1,5 @@
 .experience {
-  padding: 8rem 2rem;
+  padding: 4rem 2rem 8rem;
   background: 
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
@@ -28,10 +28,9 @@
 
 .section-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
-  flex-wrap: wrap;
   gap: 2rem;
 }
 
@@ -41,6 +40,7 @@
   color: #ffffff;
   margin: 0;
   letter-spacing: -0.02em;
+  text-align: center;
 }
 
 .download-btn {
@@ -54,6 +54,9 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .download-btn:hover {
@@ -113,12 +116,14 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .title-wrapper {
   flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .experience-title {
@@ -141,6 +146,8 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 0.5rem;
+  flex-shrink: 0;
+  text-align: right;
 }
 
 .experience-location {
@@ -159,12 +166,12 @@
 
 .company-link {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   text-decoration: none;
-  margin-bottom: 1.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  width: fit-content;
+  flex: 1;
+  min-width: 0;
 }
 
 .company-link:hover {
@@ -187,6 +194,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 0.1rem;
 }
 
 .company-logo-img {

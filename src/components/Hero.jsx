@@ -10,7 +10,7 @@ const Hero = () => {
           <h1 className="hero-title">
             <span className="highlight">Narasimha Kamath</span>
           </h1>
-          <h2 className="hero-subtitle">Software Architect</h2>
+          <h2 className="hero-subtitle">Software Engineer</h2>
           <p className="hero-description">
             I like systems — in software, cinema, and football.</p>
             <p className="hero-description-sub">
