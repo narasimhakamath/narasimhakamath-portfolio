@@ -190,10 +190,18 @@
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
+  display: inline-block;
 }
 
 .read-more:hover {
   text-decoration-thickness: 2px;
+}
+
+.no-posts {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #999;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 768px) {
