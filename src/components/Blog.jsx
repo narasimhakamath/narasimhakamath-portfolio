@@ -93,7 +93,7 @@ const Blog = () => {
         
         {!loading && !error && blogPosts.length > 0 && (
           <>
-            <div className="tag-filter">
+            {/* <div className="tag-filter">
               {allTags.map(tag => (
                 <button
                   key={tag}
@@ -103,7 +103,7 @@ const Blog = () => {
                   {tag}
                 </button>
               ))}
-            </div>
+            </div> */}
 
             <div className="blog-grid">
               {filteredPosts.map(post => (
