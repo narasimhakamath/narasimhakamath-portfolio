@@ -88,7 +88,7 @@ const Blog = () => {
       <div className="blog-container">
         <h2 className="section-title">Blog</h2>
         <p className="section-subtitle">
-          {loading ? 'Loading posts...' : error ? error : 'Technical insights and experiences from the field'}
+          {loading ? 'Loading posts...' : error ? error : 'Thoughts that didn\'t stay in my head'}
         </p>
         
         {!loading && !error && blogPosts.length > 0 && (
@@ -127,7 +127,7 @@ const Blog = () => {
                     rel="noopener noreferrer"
                     className="read-more"
                   >
-                    Read on Medium →
+                    Read more →
                   </a>
                 </article>
               ))}
