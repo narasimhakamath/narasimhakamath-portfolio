@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Contact.css';
 
 const Contact = () => {
@@ -54,11 +54,33 @@ const Contact = () => {
     });
   };
 
+  useEffect(() => {
+    // Load Calendly widget script
+    if (!document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
   return (
     <section id="contact" className="contact">
       <div className="contact-container">
         <h2 className="section-title">Get In Touch</h2>
         <p className="section-subtitle">Have a question or want to work together?</p>
+        
+        <div className="calendly-wrapper">
+          <div className="calendly-header">
+            <h3 className="calendly-title">Schedule a Call</h3>
+            <p className="calendly-subtitle">Book a 45-minute session to discuss your project or ideas</p>
+          </div>
+          <div 
+            className="calendly-inline-widget" 
+            data-url="https://calendly.com/narasimhakamath/catchup"
+            style={{minWidth: '320px', height: '700px'}}
+          ></div>
+        </div>
         
         <div className="contact-content">
           <div className="contact-info">
