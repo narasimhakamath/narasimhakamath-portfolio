@@ -170,26 +170,29 @@
 }
 
 .btn-primary {
-  background: #ffffff;
-  color: #0a0a0a;
-  border: 1px solid #ffffff;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  color: #ffffff;
+  border: 1px solid rgba(99, 102, 241, 0.4);
 }
 
 .btn-primary:hover {
-  background: transparent;
-  color: #ffffff;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+  border-color: rgba(99, 102, 241, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 }
 
 .btn-secondary {
-  background: transparent;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
   color: #ffffff;
-  border: 1px solid #333;
+  border: 1px solid rgba(99, 102, 241, 0.4);
 }
 
 .btn-secondary:hover {
-  border-color: #ffffff;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+  border-color: rgba(99, 102, 241, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 }
 
 @keyframes fadeInUp {
