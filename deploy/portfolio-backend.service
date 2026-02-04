@@ -1,0 +1,15 @@
+[Unit]
+Description=Portfolio GA4 proxy
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/home/ubuntu/narasimhakamath-portfolio
+EnvironmentFile=/etc/my-portfolio.env
+ExecStart=/usr/bin/node server/server.js
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=20000
+
+[Install]
+WantedBy=multi-user.target
