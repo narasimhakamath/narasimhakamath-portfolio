@@ -46,6 +46,31 @@
   justify-content: center;
 }
 
+/* Loading placeholder for charts */
+.chart-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(222,208,182,0.85);
+}
+.chart-placeholder .placeholder-text {
+  margin-top: 0.6rem;
+  color: #ded0b6;
+  font-size: 0.95rem;
+}
+.chart-placeholder .spinner {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 4px solid rgba(192,132,252,0.18);
+  border-top-color: #c084fc;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ensure canvas fits its container */
 .chart-container canvas {
   max-width: 100% !important;
