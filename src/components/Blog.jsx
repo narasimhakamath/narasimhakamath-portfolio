@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { sendGAEvent } from '../ga4';
 import './Blog.css';
 
 const Blog = () => {
@@ -126,6 +127,11 @@ const Blog = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="read-more"
+                    onClick={() => sendGAEvent('medium_blog_click', {
+                      event_category: 'engagement',
+                      event_label: post.title,
+                      post_url: post.link
+                    })}
                   >
                     Read more →
                   </a>

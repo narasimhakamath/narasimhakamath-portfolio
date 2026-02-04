@@ -1,4 +1,5 @@
 import React from 'react';
+import { sendGAEvent } from '../ga4';
 import './Experience.css';
 
 const Experience = () => {
@@ -82,6 +83,10 @@ const Experience = () => {
   ];
 
   const downloadResume = () => {
+    sendGAEvent('resume_download', {
+      event_category: 'engagement',
+      event_label: 'Download Resume',
+    });
     const link = document.createElement('a');
     link.href = '/resume.pdf';
     link.download = 'Narasimha Kamath.pdf';
