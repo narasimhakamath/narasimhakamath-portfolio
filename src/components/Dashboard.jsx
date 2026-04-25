@@ -29,13 +29,20 @@ const Dashboard = () => {
       fetch(`${base}/pageviews`).then(r => r.json()),
       fetch(`${base}/event-timeseries?eventName=resume_download`).then(r => r.json()),
     ]).then(([countriesReport, devicesReport, eventsReport, pageviewsReport, resumeTimeseriesReport]) => {
+      // Modern color palette
+      const colors = {
+        gradient: ['#6366f1', '#8b5cf6', '#a78bfa', '#c084fc', '#ec4899'],
+        primary: '#6366f1',
+        secondary: '#8b5cf6',
+      };
+
       // top countries
       const countryRows = parseRows(countriesReport);
-      setTopCountries({ labels: countryRows.map(r => r.dims[0] || 'Unknown'), datasets: [{ data: countryRows.map(r => r.metrics[0] || 0), backgroundColor: ['#c084fc', '#8F43EE', '#b9aeea', '#ded0b6'] }] });
+      setTopCountries({ labels: countryRows.map(r => r.dims[0] || 'Unknown'), datasets: [{ data: countryRows.map(r => r.metrics[0] || 0), backgroundColor: colors.gradient }] });
 
       // devices
       const deviceRows = parseRows(devicesReport);
-      setDeviceBreakdown({ labels: deviceRows.map(r => r.dims[0] || 'Unknown'), datasets: [{ data: deviceRows.map(r => r.metrics[0] || 0), backgroundColor: ['#8F43EE', '#c084fc', '#b9aeea'] }] });
+      setDeviceBreakdown({ labels: deviceRows.map(r => r.dims[0] || 'Unknown'), datasets: [{ data: deviceRows.map(r => r.metrics[0] || 0), backgroundColor: [colors.primary, colors.secondary, '#a78bfa'] }] });
 
       // events summary
       const eventRows = parseRows(eventsReport);
@@ -55,7 +62,7 @@ const Dashboard = () => {
       // sort months and keep last 12
       const months = Object.keys(byMonth).sort();
       const last12 = months.slice(-12);
-      setPageviewsMonthly({ labels: last12.map(m => `${m.slice(4,6)}/${m.slice(0,4)}`), datasets: [{ data: last12.map(m => byMonth[m]), backgroundColor: '#8F43EE' }] });
+      setPageviewsMonthly({ labels: last12.map(m => `${m.slice(4,6)}/${m.slice(0,4)}`), datasets: [{ data: last12.map(m => byMonth[m]), backgroundColor: colors.primary }] });
 
       // resume downloads timeseries -> convert daily rows to monthly buckets
       try {
@@ -68,7 +75,7 @@ const Dashboard = () => {
         });
         const monthsR = Object.keys(rsByMonth).sort();
         const last12R = monthsR.slice(-12);
-        setResumeDownloadsSeries({ labels: last12R.map(m => `${m.slice(4,6)}/${m.slice(0,4)}`), datasets: [{ label: 'Downloads', data: last12R.map(m => rsByMonth[m]), backgroundColor: '#c084fc' }] });
+        setResumeDownloadsSeries({ labels: last12R.map(m => `${m.slice(4,6)}/${m.slice(0,4)}`), datasets: [{ label: 'Downloads', data: last12R.map(m => rsByMonth[m]), backgroundColor: colors.secondary }] });
       } catch (e) {
         console.warn('resume timeseries parse', e);
       }

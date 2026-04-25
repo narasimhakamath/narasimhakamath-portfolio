@@ -4,31 +4,68 @@ import { Chart, CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Leg
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Legend);
 
+// Modern color palette
+const modernColors = {
+  primary: '#6366f1',
+  secondary: '#8b5cf6',
+  tertiary: '#ec4899',
+  accent1: '#a78bfa',
+  accent2: '#c084fc',
+  gradient: ['#6366f1', '#8b5cf6', '#a78bfa', '#c084fc', '#ec4899']
+};
 
 const baseBarOptions = {
   responsive: true,
   maintainAspectRatio: false,
-  layout: { padding: { top: 8, right: 8, left: 0, bottom: 8 } },
+  layout: { padding: { top: 12, right: 12, left: 4, bottom: 12 } },
   plugins: {
     legend: { display: false },
     tooltip: {
-      backgroundColor: '#232046',
-      titleColor: '#c084fc',
-      bodyColor: '#ded0b6',
-      borderColor: 'rgba(192,160,255,0.12)',
+      backgroundColor: 'rgba(10, 10, 10, 0.95)',
+      titleColor: '#ffffff',
+      bodyColor: 'rgba(224, 224, 224, 0.9)',
+      borderColor: 'rgba(99, 102, 241, 0.3)',
       borderWidth: 1,
       usePointStyle: true,
+      padding: 12,
+      displayColors: true,
+      callbacks: {
+        labelColor: function() {
+          return {
+            borderColor: modernColors.primary,
+            backgroundColor: modernColors.primary,
+            borderWidth: 2,
+            borderRadius: 2,
+          };
+        },
+      },
     },
   },
   scales: {
     x: {
-      grid: { display: false },
-      ticks: { color: '#cfc3f8', font: { size: 9 }, maxRotation: 45, autoSkip: true },
+      grid: { 
+        display: false,
+        drawBorder: false,
+      },
+      ticks: { 
+        color: 'rgba(224, 224, 224, 0.6)', 
+        font: { size: 11, weight: '500' }, 
+        maxRotation: 45, 
+        autoSkip: true,
+        padding: 8,
+      },
     },
     y: {
       beginAtZero: true,
-      grid: { color: 'rgba(185,174,235,0.06)' },
-      ticks: { color: '#bfb8d9', font: { size: 9 } },
+      grid: { 
+        color: 'rgba(99, 102, 241, 0.08)',
+        drawBorder: false,
+      },
+      ticks: { 
+        color: 'rgba(224, 224, 224, 0.6)', 
+        font: { size: 11, weight: '500' },
+        padding: 8,
+      },
     },
   },
 };
@@ -39,14 +76,21 @@ const basePieOptions = {
   plugins: {
     legend: {
       position: 'bottom',
-      labels: { color: '#ffffff', font: { size: 10 } },
+      labels: { 
+        color: '#ffffff', 
+        font: { size: 11, weight: '500' },
+        padding: 16,
+        usePointStyle: true,
+        pointStyle: 'circle',
+      },
     },
     tooltip: {
-      backgroundColor: '#232046',
-      titleColor: '#c084fc',
-      bodyColor: '#ded0b6',
-      borderColor: 'rgba(192,160,255,0.12)',
+      backgroundColor: 'rgba(10, 10, 10, 0.95)',
+      titleColor: '#ffffff',
+      bodyColor: 'rgba(224, 224, 224, 0.9)',
+      borderColor: 'rgba(99, 102, 241, 0.3)',
       borderWidth: 1,
+      padding: 12,
     },
   },
 };
@@ -57,12 +101,12 @@ export const ResumeDownloadsChart = ({ data, options }) => (
       ...data,
       datasets: data.datasets.map(ds => ({
         ...ds,
-        backgroundColor: '#c084fc',
-        hoverBackgroundColor: '#9a6ef2',
-        borderRadius: 6,
+        backgroundColor: modernColors.secondary,
+        hoverBackgroundColor: modernColors.accent1,
+        borderRadius: 8,
         borderSkipped: false,
-        barThickness: 12,
-        maxBarThickness: 18,
+        barThickness: 16,
+        maxBarThickness: 24,
       }))
     }} options={{ ...baseBarOptions, ...options }} />
   </div>
@@ -74,12 +118,12 @@ export const PageViewsChart = ({ data, options }) => (
       ...data,
       datasets: data.datasets.map(ds => ({
         ...ds,
-        backgroundColor: '#8F43EE',
-        hoverBackgroundColor: '#9f7bf9',
-        borderRadius: 6,
+        backgroundColor: modernColors.primary,
+        hoverBackgroundColor: modernColors.accent1,
+        borderRadius: 8,
         borderSkipped: false,
-        barThickness: 12,
-        maxBarThickness: 18,
+        barThickness: 16,
+        maxBarThickness: 24,
       }))
     }} options={{ ...baseBarOptions, ...options }} />
   </div>
@@ -91,9 +135,11 @@ export const TopCountriesChart = ({ data, options }) => (
       ...data,
       datasets: data.datasets.map(ds => ({
         ...ds,
-        backgroundColor: ['#c084fc', '#8F43EE', '#b9aeea', '#ded0b6'],
-        borderWidth: 2,
-        borderColor: '#18122B',
+        backgroundColor: modernColors.gradient,
+        borderWidth: 3,
+        borderColor: 'rgba(10, 10, 10, 0.8)',
+        hoverBorderColor: 'rgba(99, 102, 241, 0.5)',
+        hoverBorderWidth: 4,
       }))
     }} options={{
       ...basePieOptions,
@@ -109,10 +155,12 @@ export const EngagementChart = ({ data, options }) => (
       ...data,
       datasets: data.datasets.map(ds => ({
         ...ds,
-        backgroundColor: ['#ded0b6', '#b9aeea', '#c084fc', '#8F43EE'],
+        backgroundColor: modernColors.gradient,
+        hoverBackgroundColor: modernColors.accent1,
         borderRadius: 8,
         borderSkipped: false,
-        barThickness: 12,
+        barThickness: 16,
+        maxBarThickness: 24,
       }))
     }} options={{ ...baseBarOptions, ...options }} />
   </div>
@@ -124,14 +172,16 @@ export const DeviceTypeChart = ({ data, options }) => (
       ...data,
       datasets: data.datasets.map(ds => ({
         ...ds,
-        backgroundColor: ['#8F43EE', '#c084fc', '#b9aeea'],
-        borderWidth: 2,
-        borderColor: '#18122B',
+        backgroundColor: [modernColors.primary, modernColors.secondary, modernColors.accent1],
+        borderWidth: 3,
+        borderColor: 'rgba(10, 10, 10, 0.8)',
+        hoverBorderColor: 'rgba(99, 102, 241, 0.5)',
+        hoverBorderWidth: 4,
       }))
     }} options={{
       ...basePieOptions,
       ...options,
-      plugins: { ...(basePieOptions.plugins || {}), legend: { position: 'bottom', labels: { color: '#ffffff' } } }
+      plugins: { ...(basePieOptions.plugins || {}), legend: { position: 'bottom', labels: { color: '#ffffff', font: { size: 11, weight: '500' }, padding: 16, usePointStyle: true } } }
     }} />
   </div>
 );
