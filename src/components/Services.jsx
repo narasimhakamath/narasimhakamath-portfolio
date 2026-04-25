@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Services.css';
+import { initParallaxCards } from '../utils/parallax';
 
 const Services = () => {
   const services = [
@@ -37,6 +38,17 @@ const Services = () => {
       )
     }
   ];
+
+  // Initialize parallax effect
+  useEffect(() => {
+    initParallaxCards('.service-card', {
+      maxTilt: 8,
+      scale: 1.03,
+      speed: 400,
+      glare: true,
+      glareMaxOpacity: 0.25
+    });
+  }, []);
 
   return (
     <section id="services" className="services">

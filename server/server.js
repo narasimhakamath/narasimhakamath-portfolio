@@ -139,31 +139,65 @@ app.get('/api/ga4/recent-pageviews', async (req, res) => {
   if (!gaClient) return res.status(500).json({ error: 'GA4 client not configured' });
   if (!PROPERTY_ID) return res.status(400).json({ error: 'GA4_PROPERTY_ID not set' });
   try {
-    // Use eventCount filtered to the page_view event instead of screenPageViews
-    // because some dimensions (pageLocation/pageReferrer/etc) are incompatible
-    // with the screenPageViews metric in GA4 Data API.
-    const [report] = await gaClient.runReport({
-      property: `properties/${PROPERTY_ID}`,
-      dateRanges: [{ startDate: req.query.startDate || '30daysAgo', endDate: req.query.endDate || 'today' }],
-      dimensions: [
-        { name: 'date' },
-        { name: 'city' },
-        { name: 'country' },
-        { name: 'deviceCategory' },
-        { name: 'pageLocation' },
-        { name: 'pageReferrer' },
-        { name: 'source' }
-      ],
-      metrics: [{ name: 'eventCount' }],
-      dimensionFilter: {
-        filter: {
-          fieldName: 'eventName',
-          stringFilter: { value: 'page_view', matchType: 'EXACT' }
+    const requestedDims = [
+      { name: 'date' },
+      { name: 'city' },
+      { name: 'country' },
+      { name: 'deviceCategory' },
+      { name: 'pageLocation' },
+      { name: 'pageReferrer' },
+      { name: 'source' }
+    ];
+
+    const metrics = [{ name: 'eventCount' }];
+    const dimensionFilter = {
+      filter: {
+        fieldName: 'eventName',
+        stringFilter: { value: 'page_view', matchType: 'EXACT' }
+      }
+    };
+
+    // Try progressively smaller dimension sets until GA accepts the combination.
+    // This avoids hard-failing when some dimensions are incompatible with metrics.
+    let dimsToTry = requestedDims.slice();
+    let lastError = null;
+    let report = null;
+    while (true) {
+      try {
+        const [r] = await gaClient.runReport({
+          property: `properties/${PROPERTY_ID}`,
+          dateRanges: [{ startDate: req.query.startDate || '30daysAgo', endDate: req.query.endDate || 'today' }],
+          dimensions: dimsToTry,
+          metrics,
+          dimensionFilter,
+          limit: Number(req.query.limit || 1000),
+        });
+        report = r;
+        break;
+      } catch (err) {
+        lastError = err;
+        // If it's an INVALID_ARGUMENT about incompatible dimensions & metrics,
+        // drop the least-important dimension and retry. Otherwise rethrow.
+        const isIncompat = err && err.details && String(err.details).includes('incompatible');
+        if (!isIncompat) {
+          console.error('GA4 recent-pageviews error', err);
+          return res.status(500).json({ error: err.message });
         }
-      },
-      limit: Number(req.query.limit || 1000),
-    });
-    res.json(report);
+
+        if (dimsToTry.length === 0) break;
+        // Remove the last (least important) dimension and retry
+        dimsToTry.pop();
+        console.warn('Retrying recent-pageviews with fewer dimensions:', dimsToTry.map(d => d.name));
+      }
+    }
+
+    if (!report) {
+      console.error('GA4 recent-pageviews final error', lastError);
+      return res.status(500).json({ error: lastError.message });
+    }
+
+    // Return the report and which dimensions were used so the client can adapt if needed
+    res.json({ report, usedDimensions: dimsToTry.map(d => d.name) });
   } catch (err) {
     console.error('GA4 recent-pageviews error', err);
     res.status(500).json({ error: err.message });

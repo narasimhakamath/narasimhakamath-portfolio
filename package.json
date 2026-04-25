@@ -31,7 +31,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "server": "node server/server.js",
-    "server:dev": "nodemon --watch server --exec node server/server.js"
+    "server:dev": "nodemon --watch server --exec node server/server.js",
+    "dev": "BROWSER=none WDS_SOCKET_PORT=0 vite --port 3000 --host"
   },
   "eslintConfig": {
     "extends": [

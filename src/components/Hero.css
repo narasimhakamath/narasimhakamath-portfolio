@@ -4,11 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 8rem 2rem 4rem;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    #0a0a0a;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -90,14 +86,18 @@
   border: 4px solid rgba(99, 102, 241, 0.5);
   box-shadow: 
     0 0 40px rgba(99, 102, 241, 0.6),
-    0 0 80px rgba(99, 102, 241, 0.4);
+    0 0 80px rgba(99, 102, 241, 0.4),
+    0 20px 60px rgba(0, 0, 0, 0.5);
   animation: fadeInUp 0.6s ease, floatImage 6s ease-in-out infinite, glow 4s ease-in-out infinite;
-  transition: transform 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  transform-style: preserve-3d;
 }
 
-.hero-image:hover {
-  transform: scale(1.1) rotate(5deg);
+/* Touch state for mobile */
+.hero-image:active {
+  transform: scale(1.05);
+}
   box-shadow: 
     0 0 60px rgba(99, 102, 241, 0.8),
     0 0 100px rgba(236, 72, 153, 0.6),
@@ -167,6 +167,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
   letter-spacing: 0.02em;
+  transform-style: preserve-3d;
 }
 
 .btn-primary {
@@ -175,11 +176,37 @@
   border: 1px solid rgba(99, 102, 241, 0.4);
 }
 
-.btn-primary:hover {
+/* Hover effects for mouse devices only */
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+    border-color: rgba(99, 102, 241, 0.6);
+    transform: translateY(-4px) translateZ(10px);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+  }
+  
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+    border-color: rgba(99, 102, 241, 0.6);
+    transform: translateY(-4px) translateZ(10px);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+  }
+  
+  .hero-image:hover {
+    transform: scale(1.15) translateZ(30px) rotateY(5deg);
+    box-shadow: 
+      0 0 60px rgba(99, 102, 241, 0.8),
+      0 0 120px rgba(236, 72, 153, 0.6),
+      0 30px 90px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Touch/active states for mobile */
+.btn-primary:active,
+.btn-secondary:active {
+  transform: scale(0.95);
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-  border-color: rgba(99, 102, 241, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
 .btn-secondary {
@@ -188,11 +215,19 @@
   border: 1px solid rgba(99, 102, 241, 0.4);
 }
 
-.btn-secondary:hover {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-  border-color: rgba(99, 102, 241, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+/* Mobile optimizations for hero */
+@media (max-width: 768px) {
+  .hero {
+    perspective: none;
+  }
+  
+  .hero-image {
+    transform-style: flat;
+  }
+  
+  .btn {
+    transform-style: flat;
+  }
 }
 
 @keyframes fadeInUp {

@@ -1,8 +1,13 @@
 .stats {
   padding: 2rem 2rem;
-  background: rgba(255, 255, 255, 0.02);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .stats-container {
@@ -16,6 +21,31 @@
 .stat-item {
   text-align: center;
   padding: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+/* Hover effects for mouse devices */
+@media (hover: hover) and (pointer: fine) {
+  .stat-item:hover {
+    transform: translateY(-5px) scale(1.05);
+  }
+  
+  .stat-item:hover .stat-number {
+    text-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+  }
+}
+
+/* Touch states for mobile */
+.stat-item:active {
+  transform: scale(1.02);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .stat-item {
+    transform-style: flat;
+  }
 }
 
 .stat-number {
@@ -28,6 +58,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3));
+  transition: all 0.3s ease;
 }
 
 .stat-label {

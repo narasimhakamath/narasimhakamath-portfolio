@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { sendGAEvent } from '../ga4';
+import { initParallaxCards } from '../utils/parallax';
 import './Experience.css';
 
 const Experience = () => {
@@ -13,11 +14,12 @@ const Experience = () => {
       logoInitial: 'D',
       period: 'July 2025 - Present',
       location: 'Bengaluru, India',
-      description: 'Leading the architecture and development of Virtual Account Management (VAM) application, a Banking-As-A-Service solution for modern banks and fintechs.',
+      description: 'Architect and primary backend engineer for FinHub Track, a BaaS (Banking-As-A-Service) platform deployed on-premise across regulated institutions — managing virtual account lifecycle, POBO/COBO, digital wallet flows, transaction processing, and automated ledger reconciliation for corporate banking customers at scale.',
       achievements: [
-        'Architected Banking-as-a-Service (Virtual Account Management) platform for banking clients (National Bank of Bahrain, Kotak Life Insurance, Bandhan Bank) targeting markets in India, UAE, and Bahrain, and delivered technical and product demos to business and technical stakeholders.',
-        'Identified performance bottleneck via load testing; designed caching layer and MongoDB read optimization, increasing TPS (Transactions Per Second) from 200 to 1,200.',
-        'Designed automated reconciliation system with AI-powered suggestions to match ledger entries against bank statements and surface anomalies, reducing manual intervention for financial operations'
+        'Eliminated performance bottlenecks within NodeJS microservices by optimizing MongoDB read patterns, implementing Redis multi-layer caching, and BullMQ job processing — achieve 6x throughput improvement across Kubernetes-orchestrated clusters while preserving transactional integrity.',
+        'Engineered fault-tolerant financial workflows using idempotency keys, distributed locking, state-machine based retry logic, and circuit breakers — ensuring exactly-once processing guarantees in money-movement operations even across network failures and service restarts.',
+        'Delivered an intelligent ledger reconciliation system that reduced manual financial team intervention by 70% through deterministic matching algorithms — maintaining full audit trails and human oversight for regulatory compliance.',
+        'Developed a LLM powered chatbot prototype enabling natural language querying of transaction data and account insights, with strict role-based access controls ensuring data security at the query level.'
       ]
     },
     {
@@ -31,8 +33,8 @@ const Experience = () => {
       location: 'Bengaluru, India',
       description: 'Led technical development initiatives and established the foundation for the Banking-As-A-Service platform.',
       achievements: [
-        'Established technical standards and architecture patterns for NodeJS/MongoDB/Kubernetes stack; evaluated SQL vs NoSQL tradeoffs for banking workloads.',
-        'Designed regional system split (Bahrain/UAE) for improved scalability and independent maintenance of multi-tenant banking infrastructure'
+        'Established technical standards and architecture patterns for NodeJS and MongoDB stack; evaluated SQL vs NoSQL tradeoffs for banking workloads.',
+        'Led and mentored a team of upto 5 engineers, establishing technical standards through design reviews and code reviews whilst remaining hands-on across compliance-sensitive deliverables.'
       ]
     },
     {
@@ -44,11 +46,10 @@ const Experience = () => {
       logoInitial: 'B',
       period: 'January 2022 - April 2024',
       location: 'Bengaluru, India',
-      description: 'Developed and maintained scalable backend systems for retail distribution management platform.',
+      description: 'Architected multi-tenant SaaS solutions for enterprise clients',
       achievements: [
-        'Architected multi-tenant white-label platform with full i18n/l10n (RTL, LTR, translations, locale-specific formatting) across React Native, DB-driven feature flags, and isolated API endpoints for 3 regional deployments (India, UAE, and Saudi Arabia).',
-        'Designed high-throughput E-Invoicing system (NodeJS, MongoDB) processing 200K-300K invoices per day (scaling to 800K+ at month-end) for GST compliance across multi-tenant SaaS infrastructure.',
-        'Resolved critical database performance issues through MySQL query optimization and indexing, and implemented server-side pagination for complex UI modules.'
+        'Delivered and scalable E-Invoice system build on PHP and MySQL — processing invoices daily and peaking at the end of the month, with in-memory caching and queue-based asyncrhonous processing ensuring high availability and full GST compliance.',
+        'Architected a multi-region white-label mobile application (Android and iOS) across various global markets via custom CI/CD pipelines, generating tenant-specific React Native builds with configurable branding, i18n (RTL/LTR), locale-aware formatting, and feature flags from a single codebase.'
       ]
     },
     {
@@ -60,10 +61,10 @@ const Experience = () => {
       logoInitial: 'B',
       period: 'August 2018 - January 2022',
       location: 'Bengaluru, India',
-      description: 'Contributed to full-stack development of enterprise retail solutions.',
+      description: 'Built and operated backend services for a multi-tenant SaaS (Software-As-A-Service) platform serving enterprise clients.',
       achievements: [
-        'Developed customer-facing features using PHP, MySQL, and NodeJS, contributing to core product functionality for enterprise clients.',
-        'Strengthened platform security by implementing ISO-compliant password management policies, including automated rotation cycles, historical password restrictions, and mandatory first-login resets for enterprise users.',
+        'Strengthened platform security by implementing robust access control policies and password management systems in compliance with ISO 27001 standards, ensuring high-level data protection for enterprise clients across multiple jurisdictions.',
+        'Resolved production database degradation through MySQL query optimization, strategic indexing, and server-side pagination — significantly improving API response times under high-concurrency workflows.',
       ]
     },
     {
@@ -94,6 +95,17 @@ const Experience = () => {
     link.click();
     document.body.removeChild(link);
   };
+
+  // Initialize parallax effect
+  useEffect(() => {
+    initParallaxCards('.timeline-content', {
+      maxTilt: 5,
+      scale: 1.01,
+      speed: 500,
+      glare: true,
+      glareMaxOpacity: 0.15
+    });
+  }, []);
 
   return (
     <section id="experience" className="experience">

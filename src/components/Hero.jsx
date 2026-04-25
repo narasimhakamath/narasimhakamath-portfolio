@@ -5,12 +5,12 @@ const Hero = () => {
   return (
     <section id="about" className="hero">
       <div className="hero-content">
-        <img src="/NK.png" alt="Narasimha Kamath" className="hero-image" />
+        <img src="/NK.jpg" alt="Narasimha Kamath" className="hero-image" />
         <div className="hero-text">
           <h1 className="hero-title">
             <span className="highlight">Narasimha Kamath</span>
           </h1>
-          <h2 className="hero-subtitle">Software Engineer</h2>
+          <h2 className="hero-subtitle">Technical Lead & Architect</h2>
           {/* <p className="hero-description">
             Software Engineer | Building scalable, reliable systems that drive impact.</p> */}
           <p className="hero-description-sub">

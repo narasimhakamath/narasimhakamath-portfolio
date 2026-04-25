@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { sendGAEvent } from '../ga4';
+import { initParallaxCards } from '../utils/parallax';
 import './Blog.css';
 
 const Blog = () => {
@@ -75,6 +76,22 @@ const Blog = () => {
 
     fetchMediumPosts();
   }, []);
+
+  // Initialize parallax effect when blog posts are loaded
+  useEffect(() => {
+    if (!loading && blogPosts.length > 0) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        initParallaxCards('.blog-card', {
+          maxTilt: 8,
+          scale: 1.02,
+          speed: 400,
+          glare: true,
+          glareMaxOpacity: 0.2
+        });
+      }, 100);
+    }
+  }, [loading, blogPosts]);
 
   // Get all unique tags
   const allTags = ['All', ...new Set(blogPosts.flatMap(post => post.tags))];

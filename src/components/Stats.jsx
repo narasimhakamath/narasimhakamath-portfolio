@@ -4,7 +4,7 @@ import './Stats.css';
 const Stats = () => {
   const stats = [
     {
-      number: '6+',
+      number: '7+',
       label: 'Years Experience'
     },
     {

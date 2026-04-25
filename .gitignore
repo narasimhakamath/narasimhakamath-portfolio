@@ -125,3 +125,10 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Google Cloud credentials
+*-portfolifo-*.json
+narasimhakamath-portfolifo-8c3a78d99c30.json
+
+# Google Cloud credentials
+*-portfolifo-*.json

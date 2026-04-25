@@ -23,18 +23,32 @@
   align-items: center;
 }
 
-.logo {
-  height: 50px;
-  width: auto;
+.logo-button {
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: opacity 0.2s ease;
-  margin: 0;
-  padding: 0;
-  display: block;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 8px;
 }
 
-.logo:hover {
-  opacity: 0.8;
+.logo-button:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
+}
+
+.home-icon {
+  width: 28px;
+  height: 28px;
+  color: #e0e0e0;
+  transition: color 0.3s ease;
+}
+
+.logo-button:hover .home-icon {
+  color: #6366f1;
 }
 
 .nav {

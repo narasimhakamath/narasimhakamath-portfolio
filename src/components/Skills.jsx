@@ -1,12 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Skills.css';
+import { initParallaxCards } from '../utils/parallax';
 
 const Skills = () => {
-  // Calculate days of experience since August 13, 2018
-  const startDate = new Date('2018-08-13');
-  const currentDate = new Date();
-  const daysOfExperience = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
-
   const skills = [
     {
       name: 'JavaScript',
@@ -57,6 +53,22 @@ const Skills = () => {
       )
     }
   ];
+
+  // Calculate days of experience since August 13, 2018
+  const startDate = new Date('2018-08-13');
+  const currentDate = new Date();
+  const daysOfExperience = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
+
+  // Initialize parallax effect
+  useEffect(() => {
+    initParallaxCards('.skill-card', {
+      maxTilt: 10,
+      scale: 1.05,
+      speed: 400,
+      glare: true,
+      glareMaxOpacity: 0.2
+    });
+  }, []);
 
   return (
     <section id="skills" className="skills">

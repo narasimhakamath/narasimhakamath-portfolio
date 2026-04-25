@@ -1,9 +1,8 @@
 .contact {
   padding: 8rem 2rem;
-  background: 
-    linear-gradient(110deg, transparent 50%, rgba(99, 102, 241, 0.05) 50%),
-    #0f0f0f;
+  background: transparent;
   position: relative;
+  perspective: 1500px;
 }
 
 .contact::before {
@@ -80,6 +79,31 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .contact {
+    perspective: none;
+    padding: 4rem 1rem;
+  }
+  
+  .info-item,
+  .social-link,
+  .calendly-button,
+  .submit-btn {
+    transform-style: flat;
+  }
+  
+  .contact-main-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
 }
 
 .info-icon {
@@ -112,6 +136,8 @@
 
 .calendly-wrapper {
   background: rgba(15, 15, 15, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(99, 102, 241, 0.2);
   border-radius: 8px;
   padding: 1.5rem;
@@ -120,6 +146,9 @@
   justify-content: center;
   gap: 1.25rem;
   height: 100%;
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.15),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .calendly-header {
@@ -157,17 +186,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.01em;
   width: 100%;
-}
-
-.calendly-button svg {
-  flex-shrink: 0;
-}
-
-.calendly-button:hover {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-  border-color: rgba(99, 102, 241, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+  transform-style: preserve-3d;
 }
 
 .calendly-button:active {
@@ -219,6 +238,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transform-style: preserve-3d;
 }
 
 .social-link svg {
@@ -229,7 +249,8 @@
 .social-link:hover {
   border-color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
 }
 
 .contact-form {
@@ -294,6 +315,7 @@
   transition: all 0.3s ease;
   background: rgba(0, 0, 0, 0.3);
   color: #ffffff;
+  transform-style: preserve-3d;
 }
 
 .form-group input::placeholder,
@@ -304,8 +326,10 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #ffffff;
+  border-color: rgba(99, 102, 241, 0.6);
   background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2);
+  transform: translateY(-2px);
 }
 
 .form-group textarea {
@@ -327,13 +351,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.01em;
   margin-top: 0.75rem;
-}
-
-.submit-btn:hover {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-  border-color: rgba(99, 102, 241, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+  transform-style: preserve-3d;
 }
 
 .form-message {
